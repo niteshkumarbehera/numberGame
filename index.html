@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+    <style>
+        .container{
+            display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    padding: 55px;
+    background: whitesmoke;
+        }
+        .box-container{
+            background: #063648;
+            padding: 50px;
+        }
+        .box-container p{
+            text-align: center;
+            color: white;    
+        }
+        .box-container p:nth-child(1){
+            font-size: 25px;
+        }
+        .box-container input{
+            font-size: 18px;
+    padding: 5px;
+        }
+        button{
+            height: 30px;
+    width: 65px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box-container">
+            <p>Guess a Number In Between 1 to 100</p>
+            <p>ENter a Number below</p>
+            <p id="output"></p>
+            <input type="number" name="number" id="userInput">
+            <button id="enter">Enter</button>
+            <button id="tryAgain" type="reset">Retry</button>
+        </div>
+    </div>
+    
+    <script>
+        let enterButton = document.getElementById('enter');
+        let againButton = document.getElementById('tryAgain');
+        let output = document.getElementById('output');
+
+        let randomNumber = Math.ceil(Math.random()*100);
+
+        function checkNumber(){
+            let input = document.getElementById('userInput').value;
+            if(input==randomNumber){
+                output.innerHTML="You guess right "+ "," + " it was " + randomNumber;
+                output.style.color="#46bf46";
+            }
+            else if(input<randomNumber && input>1){
+                output.innerHTML="You guess too low number";
+                output.style.color="red";
+            }
+            else if(input>randomNumber && input<100){
+                output.innerHTML="You guess too high number";
+                output.style.color="red";
+            }
+            else if(input<1){
+                output.innerHTML="Higher, it has to be between 1 andn 100";
+                output.style.color="red";
+            }
+            else if(isNaN(input)){
+                output.innerHTML="That's not a number";
+                output.style.color="red";
+            }
+            else{
+                output,innerHTML="Low, it has to be between 1 and 100";
+                output.style.color="red";
+            }
+        }
+        enterButton.addEventListener('click',checkNumber)
+    </script>
+</body>
+</html>
